@@ -92,3 +92,51 @@ npm install:
   Dotenv
   Mongodb
 node server.js
+
+
+
+----
+```mermaid
+graph TD
+    Client([Client])
+
+    GET_ALL[GET /productos]
+    GET_ID[GET /productos/:id]
+    POST[POST /productos]
+    PUT[PUT /productos/:id]
+    DELETE[DELETE /productos/:id]
+
+    ANALYSIS{{Data analysis}}
+    ERROR[Return error]
+    CONTINUE[Continue]
+    CONNECT[Conect to mongodb]
+    DB[(MongoDB)]
+
+    Client --> GET_ALL
+    Client --> GET_ID
+    Client --> POST
+    Client --> PUT
+    Client --> DELETE
+
+    GET_ALL --> ANALYSIS
+    GET_ID --> ANALYSIS
+    POST --> ANALYSIS
+    PUT --> ANALYSIS
+    DELETE --> ANALYSIS
+
+    ANALYSIS -- Error --> ERROR
+    ERROR --> Client
+    ANALYSIS -- Valid --> CONTINUE
+    CONTINUE --> CONNECT
+    CONNECT --> DB
+```
+
+
+
+
+
+
+
+
+
+
